@@ -6,6 +6,7 @@ import userSignin from "./handlers/user.signin.js";
 import userSignOut from "./handlers/user.signout.js";
 import { Document } from "./models/Document.js";
 import { User } from "./models/User.js";
+import userSignup from "./handlers/user.signup.js";
 
 io.engine.on("initial_headers", initialHeaders);
 
@@ -54,6 +55,7 @@ io.on('connection', async (socket) => {
 app.group('/api/', api => {
 	api.post('/cookies/read', (req, res) => res.send({...req.cookies}));
 	api.post('/user/signin', userSignin);
+	api.post('/user/signup', userSignup);
 	api.post('/user/signout', userSignOut);
 });
 
