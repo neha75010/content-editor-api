@@ -5,11 +5,9 @@ import { Document, User } from "./models/index.js";
 import { initialHeaders, usersGet, documentsGet, documentSearch, documentCreate, documentGet, documentSet, userSignin, userSignup, userSignOut } from "./handlers/index.js";
 
 io.engine.on("initial_headers", initialHeaders);
-
 io.on('connection', async (socket) => {
     const { handshake : { headers : { cookie = "" } } } = socket;
 	socket.join(`room:${parse(cookie)?.["client-id"] ?? randomID()}`);
-
 	socket.on('cookies:read', callback => callback(parse(cookie)));
 	socket.on('users:get', usersGet);
 	socket.on('documents:get', documentsGet);
