@@ -1,2 +1,3 @@
-import { chadLock } from "../utils/utils.js";
+import chadLock from "../functions/chadLock.js";
+
 export const jwtKey = chadLock('cledechiffrage');
